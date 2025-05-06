@@ -1,4 +1,4 @@
-/* Estilo general */
+/* Estilo general
 body {
     font-family: 'Poppins', Arial, sans-serif;
     margin: 0;
@@ -482,9 +482,23 @@ section ul li strong {
 /* Galería en cuadrícula */
 .gallery.grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ajusta el tamaño mínimo y máximo */
     gap: 20px;
     padding: 20px;
+}
+
+/* Para pantallas grandes (PC) */
+@media (min-width: 1024px) {
+    .gallery.grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Más espacio para pantallas grandes */
+    }
+}
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    .gallery.grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Más compacto para móviles */
+    }
 }
 
 .gallery-item {
@@ -507,6 +521,39 @@ section ul li strong {
     margin-top: 10px;
     font-size: 16px;
     color: #333;
+}
+
+/* Imágenes de la galería - Estilo general */
+.gallery-item img {
+    width: 100%; /* Por defecto, ocupan todo el ancho del contenedor */
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Para pantallas grandes (PC) */
+@media (min-width: 1024px) {
+    .gallery-item img {
+        width: 300px; /* Ajusta el tamaño máximo para pantallas grandes */
+        height: auto;
+        margin: 0 auto; /* Centra las imágenes si es necesario */
+    }
+}
+
+/* Para pantallas medianas (tablets) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .gallery-item img {
+        width: 200px; /* Ajusta el tamaño para tablets */
+        height: auto;
+    }
+}
+
+/* Para pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    .gallery-item img {
+        width: 100%; /* Ocupan todo el ancho del contenedor */
+        height: auto;
+    }
 }
 
 /* Media Queries para diseño responsive */
@@ -584,4 +631,129 @@ section ul li strong {
     section h2 {
         font-size: 20px;
     }
+}
+
+/* Fondo oscuro detrás del modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0); /* Inicialmente transparente */
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.modal-overlay.show {
+    background-color: rgba(0, 0, 0, 0.5); /* Se oscurece al mostrarse */
+    opacity: 1;
+}
+
+/* Modal - Estilo base */
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8); /* Aparece con zoom reducido */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    opacity: 0; /* Inicialmente invisible */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Mostrar el modal */
+.modal.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Ocultar el modal */
+.modal.hidden {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+    pointer-events: none;
+}
+
+/* Contenido del modal */
+.modal-content {
+    text-align: center;
+}
+
+/* Botón de cerrar */
+.modal .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal .close:hover {
+    color: #2a75bb;
+}
+
+
+/* Modal - Ajustes para pantallas pequeñas (móviles) */
+@media (max-width: 80%) {
+    .modal {
+        width: 100%; /* Ocupa todo el ancho de la pantalla */
+        height: 95%; /* Ocupa casi toda la altura de la pantalla */
+        padding: 20px; /* Aumenta el padding */
+    }
+
+    .modal img {
+        max-width: 100%; /* Asegura que la imagen no desborde */
+        height: auto;
+    }
+
+    .modal-content {
+        font-size: 16px; /* Aumenta el tamaño del texto */
+    }
+}
+
+/* Modal - Ajustes para pantallas pequeñas (móviles) */
+@media (max-width: 767px) {
+    .modal {
+        width: 100%; /* Ocupa todo el ancho de la pantalla */
+        height: 100%; /* Ocupa toda la altura de la pantalla */
+        padding: 30px; /* Aumenta el padding */
+        border-radius: 0; /* Elimina los bordes redondeados para maximizar el espacio */
+    }
+
+    .modal img {
+        max-width: 100%; /* Asegura que la imagen no desborde */
+        height: auto;
+    }
+
+    .modal-content {
+        font-size: 18px; /* Aumenta el tamaño del texto */
+    }
+}
+
+/* Ocultar el modal inicialmente */
+.hidden {
+    display: none;
+}
+
+/* Mostrar el modal */
+.modal.show {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Mostrar el fondo oscuro */
+.modal-overlay.show {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.5);
 }
