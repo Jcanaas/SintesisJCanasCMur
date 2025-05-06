@@ -11,7 +11,7 @@
         <div class="contenedor">
             <h2 class="logotipo" onclick="location.href='index.html'">Pokémon RPG</h2>
             <nav>
-                <a href="about.html">Sobre Nosotros</a>
+                <a href="doc.html">Documentacion</a>
                 <a href="form.html">Formulario de Opinión</a>
                 <a href="signin.html">Registrarse</a>
                 <a href="login.html">Iniciar Sesión</a>
@@ -28,7 +28,17 @@
         </div>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                let savedImage = localStorage.getItem("profileImage");
+                // Verificar si hay un usuario en localStorage
+                const usuarioLocal = localStorage.getItem("usuario");
+
+                if (usuarioLocal) {
+                    // Ocultar los botones de "Registrarse" y "Iniciar Sesión"
+                    document.querySelector("a[href='signin.html']").style.display = "none";
+                    document.querySelector("a[href='login.html']").style.display = "none";
+                }
+
+                // Mostrar la imagen de perfil del usuario
+                const savedImage = localStorage.getItem("profileImage");
                 if (savedImage) {
                     document.getElementById("userProfileImage").src = savedImage;
                 } else {

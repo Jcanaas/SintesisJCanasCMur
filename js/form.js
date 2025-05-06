@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const scriptURL = "https://script.google.com/macros/s/AKfycbzsORwapCu088hn1FW4aFLSxJas6lJp0VPK6nwJbWMhsS2T_AoGdiAt9jKXqUGaa6jfaQ/exec"; // Reemplaza con tu ID de despliegue
+        const scriptURL = "https://script.google.com/macros/s/AKfycbwvIGoqILZbwGRAg8gDopu02BXnT2xFj1ujWU4imDIGF3n5G7SxySgMk7aDkS5iJmmLMw/exec"; // Reemplaza con tu ID de despliegue
 
         // Construir la URL de la solicitud JSONP
         const url = `${scriptURL}?callback=loadData&nombre=${encodeURIComponent(nombre)}&comentarios=${encodeURIComponent(comentarios)}&rating=${encodeURIComponent(rating)}`;

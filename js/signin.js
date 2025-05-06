@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (hasError) return; // Detener el envío si hay errores
 
-        const scriptURL = "https://script.google.com/macros/s/AKfycbxi2S9LHaQEyWsUxWyB5a1P_BupvjPGtsejbJZWGHxQwSv5_DDV4c_QkEk6wg4oahOH/exec"; // URL de tu script de Google Apps
+        const scriptURL = "https://script.google.com/macros/s/AKfycbwvIGoqILZbwGRAg8gDopu02BXnT2xFj1ujWU4imDIGF3n5G7SxySgMk7aDkS5iJmmLMw/exec"; // URL de tu script de Google Apps
 
         // Enviar la solicitud POST
         fetch(scriptURL, {

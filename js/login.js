@@ -34,12 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const data = {
             accion: 'login',
             usuario: loginData.usuario,
-            contrasena: loginData.password
+            contrasena: loginData.password,
+            foto: '',
+            ip: '',
         };
 
         console.log('Datos enviados:', data);
 
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxi2S9LHaQEyWsUxWyB5a1P_BupvjPGtsejbJZWGHxQwSv5_DDV4c_QkEk6wg4oahOH/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwvIGoqILZbwGRAg8gDopu02BXnT2xFj1ujWU4imDIGF3n5G7SxySgMk7aDkS5iJmmLMw/exec';
 
         // Enviar datos al Google Apps Script
         fetch(scriptURL, {

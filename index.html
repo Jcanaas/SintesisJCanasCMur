@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokémon RPG - Proyecto de Síntesis</title>
+    <title>Pokémon: La Sierpe de La Costera</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
         <div class="contenedor">
             <h2 class="logotipo" onclick="location.href='index.html'">Pokémon RPG</h2>
             <nav>
-                <a href="about.html">Sobre Nosotros</a>
+                <a href="doc.html">Documentacion</a>
                 <a href="form.html">Formulario de Opinión</a>
                 <a href="signin.html">Registrarse</a>
                 <a href="login.html">Iniciar Sesión</a>
@@ -26,37 +26,128 @@
                 </a>
             </nav>
         </div>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                let savedImage = localStorage.getItem("profileImage");
-                if (savedImage) {
-                    document.getElementById("userProfileImage").src = savedImage;
-                } else {
-                    document.getElementById("userProfileImage").src = "img/user_default.png"; // Imagen por defecto
-                }
-            });
-
-            function searchContent() {
-                const input = document.getElementById("searchInput").value.toLowerCase();
-                console.log("Buscando:", input); // Aquí puedes implementar la lógica de búsqueda
-            }
-        </script>
     </header>
+
     <main>
-        <section class="game-info">
-            <h2>Sobre el Juego</h2>
-            <p>Este es un juego de Pokémon desarrollado con RPG Maker como parte del proyecto de síntesis de grado medio en informática.</p>
-            <img src="pokemon-game-screenshot.jpg" alt="Captura de pantalla del juego">
-            <p>Explora un mundo lleno de aventuras, captura Pokémon y conviértete en el mejor entrenador.</p>
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>¡Una nueva región, una antigua amenaza y gambas muy caras!</h1>
+            <p>Explora La Costera y enfréntate al despertar de Sierpentez.</p>
+            <button class="download-button" onclick="location.href='descargas.html'">Ver Tráiler / Jugar Demo</button>
         </section>
-        <section class="download">
-            <h2>Descargar el Juego</h2>
-            <p>Haz clic en el siguiente enlace para ir a la página de descargas:</p>
-            <a href="descargas.html" class="download-button">Ir a Descargas</a>
+
+        <!-- Galería de Mapas -->
+        <section class="galeria">
+            <h2>Explora La Costera</h2>
+            <div class="gallery grid">
+                <div class="gallery-item" onclick="showModal('Bahía de Marezuela', 'Ciudad portuaria con gimnasio Agua y pescados frescos.')">
+                    <img src="img/mapa_bahia.jpg" alt="Bahía de Marezuela">
+                    <p>Bahía de Marezuela</p>
+                </div>
+                <div class="gallery-item" onclick="showModal('Islas del Fuego', 'Archipiélago volcánico con Pokémon únicos de Fuego.')">
+                    <img src="img/mapa_islas.jpg" alt="Islas del Fuego">
+                    <p>Islas del Fuego</p>
+                </div>
+                <div class="gallery-item" onclick="showModal('Dunas del Levante', 'Desierto costero con Pokémon tipo Roca y Viento.')">
+                    <img src="img/mapa_dunas.jpg" alt="Dunas del Levante">
+                    <p>Dunas del Levante</p>
+                </div>
+                <div class="gallery-item" onclick="showModal('Cueva del Levante', 'Hogar de Sierpentez y epicentro del caos.')">
+                    <img src="img/mapa_cueva.jpg" alt="Cueva del Levante">
+                    <p>Cueva del Levante</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galería de Pokémon -->
+        <section class="galeria">
+            <h2>Pokémon Exclusivos</h2>
+            <div class="gallery grid">
+                <div class="gallery-item" onclick="showModal('Sierpentez', 'Legendario envuelto en algas (Dragón/Agua).')">
+                    <img src="img/sierpentez.jpg" alt="Sierpentez">
+                    <p>Sierpentez</p>
+                </div>
+                <div class="gallery-item" onclick="showModal('Navajín', 'Navaja marina con "Oleaje Nocturno" (Acero/Siniestro).')">
+                    <img src="img/navajin.jpg" alt="Navajín">
+                    <p>Navajín</p>
+                </div>
+                <div class="gallery-item" onclick="showModal('Gambascal', 'Gamba luchadora con "Marisquito" (Agua/Fuego).')">
+                    <img src="img/gambascal.jpg" alt="Gambascal">
+                    <p>Gambascal</p>
+                </div>
+                <div class="gallery-item" onclick="showModal('Molintón', 'Confunde a los Tauros con molinos (Roca/Viento).')">
+                    <img src="img/molinton.jpg" alt="Molintón">
+                    <p>Molintón</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galería de Personajes -->
+        <section class="galeria">
+            <h2>Personajes</h2>
+            <div class="gallery grid">
+                <div class="gallery-item" onclick="showModal('El/La Protagonista', 'Vive con su abuela en un pueblo costero. Su inicial dependerá de tu elección.')">
+                    <img src="img/protagonista.jpg" alt="Protagonista">
+                    <p>Protagonista</p>
+                </div>
+                <div class="gallery-item" onclick="showModal('Andrés "El Fisco"', 'Villano con yate y abanicos de oro. Líder del Team Almendrao.')">
+                    <img src="img/andres.jpg" alt="Andrés">
+                    <p>Andrés "El Fisco"</p>
+                </div>
+                <div class="gallery-item" onclick="showModal('Profesor Emilio', 'Investigador de Pokémon marinos.')">
+                    <img src="img/profesor_emilio.jpg" alt="Profesor Emilio">
+                    <p>Profesor Emilio</p>
+                </div>
+                
+            </div>
         </section>
     </main>
+
+    <!-- Modal -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title"></h3>
+            <p id="modal-description"></p>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2025 Jordi y Claudia. Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+        function showModal(title, description) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-description').textContent = description;
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Verificar si hay un usuario en localStorage
+            const usuarioLocal = localStorage.getItem("usuario");
+
+            if (usuarioLocal) {
+                // Ocultar los botones de "Registrarse" y "Iniciar Sesión"
+                const signinButton = document.querySelector("a[href='signin.html']");
+                const loginButton = document.querySelector("a[href='login.html']");
+                if (signinButton) signinButton.style.display = "none";
+                if (loginButton) loginButton.style.display = "none";
+            }
+
+            // Mostrar la imagen de perfil del usuario
+            const savedImage = localStorage.getItem("profileImage");
+            const userProfileImage = document.getElementById("userProfileImage");
+            if (savedImage && userProfileImage) {
+                userProfileImage.src = savedImage;
+            } else if (userProfileImage) {
+                userProfileImage.src = "img/user_default.png"; // Imagen por defecto
+            }
+        });
+    </script>
 </body>
 </html>
