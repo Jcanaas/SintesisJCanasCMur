@@ -1,0 +1,36 @@
+# Ruta 5 (41) - Ruta 4 (40)
+41,North,0,40,South,0
+# Ruta 5 (41) - Ruta 6 (45)
+41,South,6,45,North,0
+# Zona Safari (66) - Ruta 1 (5)
+66,North,18,5,South,0
+# Torremolinos (7) - Ruta 1 (5)
+7,South,0,5,North,2
+# Villa Zarzuela  (2) - Ruta 1 (5)
+2,North,0,5,South,4
+# Villa Zarzuela  (2) - Zona Safari (66)
+2,West,0,66,East,0
+# Torremolinos (7) - Socabon Soterrado (61)
+7,East,0,61,West,26
+# Ruta 2 (21) - Socabon Soterrado (61)
+21,East,51,61,West,0
+# Torremolinos (7) - Pueblo Lomito (23)
+7,East,0,23,West,78
+# Ruta 3 (31) - Pueblo Lomito (23)
+31,South,32,23,North,0
+# Ruta 2 (21) - Pueblo Lomito (23)
+21,East,0,23,West,1
+# Ruta 7 (47) - Torremolinos (7)
+47,West,0,7,East,0
+# Ruta 2 (21) - Torremolinos (7)
+21,South,0,7,North,21
+# Ruta 3 (31) - Monte Plateado (35)
+31,West,0,35,East,10
+# Ruta 7 (47) - Frente de Batalla (52)
+47,East,8,52,West,0
+# Ruta 3 (31) - Ruta 9 (80)
+31,East,0,80,West,0
+# Villa Clicker (81) - Ruta 9 (80)
+81,West,13,80,East,0
+# Ruta 2 (21) - Ruta 7 (47)
+21,East,77,47,West,0
