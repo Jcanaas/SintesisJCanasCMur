@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Satisfacción</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/spiner.css">
+    <link rel="stylesheet" href="css/nav.css">
+    
+</head>
+<body class="min-h-screen bg-slate-300 overflow-y-auto">
+    <header>
+        <div class="contenedor">
+            <h2 class="logotipo" onclick="location.href='index.html'">Pokémon RPG</h2>
+            <nav>
+                <a href="doc.html">Documentacion</a>
+                <a href="form.html" class="activo">Formulario de Opinión</a>
+                <a href="signin.html">Registrarse</a>
+                <a href="login.html">Iniciar Sesión</a>
+                <div class="group">
+                    <input type="text" id="searchInput" class="input" placeholder="Buscar..." onkeyup="searchContent()">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M10 2a8 8 0 105.293 14.707l5.387 5.387a1 1 0 001.414-1.414l-5.387-5.387A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/>
+                    </svg>
+                </div>
+                <a href="user.html" class="user-button">
+                    <img id="userProfileImage" src="img/user_default.png" alt="User Profile" class="user-icon">
+                </a>
+            </nav>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Verificar si hay un usuario en localStorage
+                const usuarioLocal = localStorage.getItem("usuario");
+
+                if (usuarioLocal) {
+                    // Ocultar los botones de "Registrarse" y "Iniciar Sesión"
+                    document.querySelector("a[href='signin.html']").style.display = "none";
+                    document.querySelector("a[href='login.html']").style.display = "none";
+                }
+
+                // Mostrar la imagen de perfil del usuario
+                const savedImage = localStorage.getItem("profileImage");
+                if (savedImage) {
+                    document.getElementById("userProfileImage").src = savedImage;
+                } else {
+                    document.getElementById("userProfileImage").src = "img/user_default.png"; // Imagen por defecto
+                }
+            });
+
+            function searchContent() {
+                const input = document.getElementById("searchInput").value.toLowerCase();
+                console.log("Buscando:", input); // Aquí puedes implementar la lógica de búsqueda
+            }
+        </script>
+    </header>
+
+    <main>
+        <section class="waves">
+            <div class="air air1"></div>
+            <div class="air air2"></div>
+            <div class="air air3"></div>
+            <div class="air air4"></div>
+        </section>
+
+        <div class="login-container">
+            <h1 class="text-4xl text-center text-blue-700">Formulario de Satisfacción</h1>
+            <div class="form-container bg-white rounded-lg shadow-xl p-10 mt-5">
+                <form id="formulario" class="space-y-5">
+                    <div class="form-group">
+                        <label for="nomCognoms">Nombre y Apellidos:</label>
+                        <input id="nomCognoms" type="text" name="nomCognoms" placeholder="Nombre y Apellidos" required>
+                        <div id="error-nombre" class="error-message hidden"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="observacions">Comentarios (máximo 200 caracteres):</label>
+                        <textarea id="observacions" name="observacions" rows="4" maxlength="200" placeholder="Escribe tus comentarios aquí..."></textarea>
+                        <div id="error-comentarios" class="error-message hidden"></div>
+                    </div>
+
+                    <div class="form-group rating">
+                        <label for="rating">Calificación:</label>
+                        <div class="rating-buttons">
+                            <input type="radio" id="rate1" name="rate" value="1">
+                            <label for="rate1">1</label>
+                            <input type="radio" id="rate2" name="rate" value="2">
+                            <label for="rate2">2</label>
+                            <input type="radio" id="rate3" name="rate" value="3" checked>
+                            <label for="rate3">3</label>
+                            <input type="radio" id="rate4" name="rate" value="4">
+                            <label for="rate4">4</label>
+                            <input type="radio" id="rate5" name="rate" value="5">
+                            <label for="rate5">5</label>
+                        </div>
+                    </div>
+
+                    <div id="botones" class="form-buttons">
+                        <button type="submit">Enviar</button>
+                        <button type="reset">Reset</button>
+                    </div>
+                </form>
+                <div id="mensaje" class="mt-5 text-center"></div>
+                <div class="mt-5 text-center">
+                    O si lo prefieres puedes dejar tu comentario en mi <a href="https://github.com/Jcanaas/JoJo-Flix/issues" target="_blank" class="text-blue">GitHub</a>.
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <script>function loadData(data) {
+    console.log("Respuesta JSONP: ", data);
+
+    const mensaje = document.getElementById("mensaje");
+
+    if (data.mensaje) {
+        // Si se recibe la respuesta con éxito
+        mensaje.textContent = "¡Formulario enviado con éxito!";
+        mensaje.classList.remove("text-red-600");
+        mensaje.classList.add("text-green-600");
+    } else {
+        // Si se recibe un error
+        mensaje.textContent = "Hubo un error.";
+        mensaje.classList.add("text-red-600");
+    }
+
+    // Redirigir a la página de agradecimiento después de 2 segundos
+    setTimeout(() => {
+        window.location.href = "thank_you.html";
+    }, 2000);
+}
+
+// Enviar formulario
+document.addEventListener("DOMContentLoaded", () => {
+    const formulario = document.getElementById("formulario");
+
+    formulario.addEventListener("submit", (event) => {
+        event.preventDefault();  // Evita el envío predeterminado del formulario
+
+        const nombre = document.getElementById("nomCognoms").value.trim();
+        const comentarios = document.getElementById("observacions").value.trim();
+        const rating = document.querySelector('input[name="rate"]:checked')?.value;
+
+        console.log("Datos antes de enviar:", { nombre, comentarios, rating });
+
+        // Verifica si los campos obligatorios están completos
+        if (!nombre || !rating) {
+            const mensaje = document.getElementById("mensaje");
+            mensaje.textContent = "Por favor, completa todos los campos obligatorios.";
+            mensaje.classList.add("text-red-600");
+            return;
+        }
+
+        const scriptURL = "https://script.google.com/macros/s/AKfycbwvIGoqILZbwGRAg8gDopu02BXnT2xFj1ujWU4imDIGF3n5G7SxySgMk7aDkS5iJmmLMw/exec"; // Reemplaza con tu ID de despliegue
+
+        // Construir la URL de la solicitud JSONP
+        const url = `${scriptURL}?callback=loadData&nombre=${encodeURIComponent(nombre)}&comentarios=${encodeURIComponent(comentarios)}&rating=${encodeURIComponent(rating)}`;
+
+        // Crear el script para la solicitud JSONP
+        const script = document.createElement("script");
+        script.src = url;
+        document.body.appendChild(script);
+    });
+});
+</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Obtener el nombre del usuario desde localStorage
+            const usuarioLocal = localStorage.getItem("usuario");
+
+            // Si existe un usuario, establecerlo como valor por defecto en el campo de texto
+            if (usuarioLocal) {
+                const nombreInput = document.getElementById("nomCognoms");
+                if (nombreInput) {
+                    nombreInput.value = usuarioLocal;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

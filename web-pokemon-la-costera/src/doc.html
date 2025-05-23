@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon: La Sierpe de La Costera</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header id="mainHeader">
+        <div class="contenedor">
+            <h2 class="logotipo" onclick="location.href='index.html'">Pokémon RPG</h2>
+            <nav id="mainNav">
+                <a href="doc.html">Documentacion</a>
+                <a href="form.html">Formulario de Opinión</a>
+                <a href="signin.html">Registrarse</a>
+                <a href="login.html">Iniciar Sesión</a>
+                <div class="group">
+                    <input type="text" id="searchInput" class="input" placeholder="Buscar..." onkeyup="searchContent()">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M10 2a8 8 0 105.293 14.707l5.387 5.387a1 1 0 001.414-1.414l-5.387-5.387A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/>
+                    </svg>
+                </div>
+                <a href="user.html" class="user-button">
+                    <img id="userProfileImage" src="img/user_default.png" alt="User Profile" class="user-icon">
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Documentación</h2>
+            <iframe src="https://docs.google.com/document/d/1zQ0sY5p4RpRwOhvTnwqWyIA2JzB9COuKSUI93mZOZNk/preview?usp=sharing" 
+                width="100%" 
+                height="900px" 
+                style="border: none;">
+            </iframe>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Jordi y Claudia. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Verificar si hay un usuario en localStorage
+            const usuarioLocal = localStorage.getItem("usuario");
+
+            if (usuarioLocal) {
+                // Ocultar los botones de "Registrarse" y "Iniciar Sesión"
+                const signinButton = document.querySelector("a[href='signin.html']");
+                const loginButton = document.querySelector("a[href='login.html']");
+                if (signinButton) signinButton.style.display = "none";
+                if (loginButton) loginButton.style.display = "none";
+            }
+
+            // Mostrar la imagen de perfil del usuario
+            const savedImage = localStorage.getItem("profileImage");
+            const userProfileImage = document.getElementById("userProfileImage");
+            if (savedImage && userProfileImage) {
+                userProfileImage.src = savedImage;
+            } else if (userProfileImage) {
+                userProfileImage.src = "img/user_default.png"; // Imagen por defecto
+            }
+        });
+
+        // Ocultar el header al hacer scroll
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 0) {
+                header.style.display = 'none';
+            } else {
+                header.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

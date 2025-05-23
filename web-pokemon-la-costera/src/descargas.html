@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon RPG - Proyecto de Síntesis</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="contenedor">
+            <h2 class="logotipo" onclick="location.href='index.html'">Pokémon RPG</h2>
+            <nav>
+                <a href="doc.html">Documentacion</a>
+                <a href="form.html">Formulario de Opinión</a>
+                <a href="signin.html">Registrarse</a>
+                <a href="login.html">Iniciar Sesión</a>
+                <div class="group">
+                    <input type="text" id="searchInput" class="input" placeholder="Buscar..." onkeyup="searchContent()">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M10 2a8 8 0 105.293 14.707l5.387 5.387a1 1 0 001.414-1.414l-5.387-5.387A8 8 0 0010 2zm0 2a6 6 0 110 12 6 6 0 010-12z"/>
+                    </svg>
+                </div>
+                <a href="user.html" class="user-button">
+                    <img id="userProfileImage" src="img/user_default.png" alt="User Profile" class="user-icon">
+                </a>
+            </nav>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Verificar si hay un usuario en localStorage
+                const usuarioLocal = localStorage.getItem("usuario");
+
+                if (usuarioLocal) {
+                    // Ocultar los botones de "Registrarse" y "Iniciar Sesión"
+                    document.querySelector("a[href='signin.html']").style.display = "none";
+                    document.querySelector("a[href='login.html']").style.display = "none";
+                }
+
+                // Mostrar la imagen de perfil del usuario
+                const savedImage = localStorage.getItem("profileImage");
+                if (savedImage) {
+                    document.getElementById("userProfileImage").src = savedImage;
+                } else {
+                    document.getElementById("userProfileImage").src = "img/user_default.png"; // Imagen por defecto
+                }
+            });
+
+            function searchContent() {
+                const input = document.getElementById("searchInput").value.toLowerCase();
+                console.log("Buscando:", input); // Aquí puedes implementar la lógica de búsqueda
+            }
+        </script>
+    </header>
+    <main>
+        <section class="game-info">
+            <h2>Sobre el Juego</h2>
+            <p>Este es un juego de Pokémon desarrollado con RPG Maker como parte del proyecto de síntesis de grado medio en informática.</p>
+            <img src="pokemon-game-screenshot.jpg" alt="Captura de pantalla del juego">
+            <p>Explora un mundo lleno de aventuras, captura Pokémon y conviértete en el mejor entrenador.</p>
+        </section>
+        <section class="download">
+            <h2>Descargar el Juego</h2>
+            <p>Haz clic en el siguiente enlace para ir a la página de descargas:</p>
+            <a href="descargas.html" class="download-button">Ir a Descargas</a>
+        </section>
+        <div class="form-group">
+            <label for="observacions">Comentarios (máximo 200 caracteres):</label>
+            <textarea id="observacions" name="observacions" rows="4" maxlength="200" placeholder="Escribe tus comentarios aquí..."></textarea>
+            <div id="error-comentarios" class="error-message hidden"></div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Jordi y Claudia. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

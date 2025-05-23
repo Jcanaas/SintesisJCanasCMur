@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario - Pokémon RPG</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <div class="contenedor">
+            <h2 class="logotipo" onclick="location.href='index.html'">Pokémon RPG</h2>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="form.html">Formulario de Opinión</a>
+                <a href="signin.html">Registrarse</a>
+                <a href="login.html">Iniciar Sesión</a>
+                <a onclick="borrarLocalStorage()">Borrar Datos</a>
+            </nav>
+        </div>
+    </header>
+    <section class="waves">
+        <div class="air air1"></div>
+        <div class="air air2"></div>
+        <div class="air air3"></div>
+        <div class="air air4"></div>
+    </section>
+
+    <main>
+        <div class="login-container">
+            <h1>Bienvenid@, <span id="nombreUsuario"></span>!</h1>
+            <div class="profile-header">
+                <img src="img/user_default.png" alt="Imagen de perfil" class="profile-image" id="profileImage">
+                <div class="image-selector" id="imageSelector">
+                    <img src="https://raw.githubusercontent.com/Jcanaas/JoJo-Flix/refs/heads/main/img/user_pink.png" alt="User 1">
+                    <img src="https://raw.githubusercontent.com/Jcanaas/JoJo-Flix/refs/heads/main/img/user_green.png" alt="User 2">
+                    <img src="https://raw.githubusercontent.com/Jcanaas/JoJo-Flix/refs/heads/main/img/user_blue.png" alt="User 3">
+                    <img src="https://raw.githubusercontent.com/Jcanaas/JoJo-Flix/refs/heads/main/img/user_grey.png" alt="User 4">
+                    <img src="https://raw.githubusercontent.com/Jcanaas/JoJo-Flix/refs/heads/main/img/user_orange.png" alt="User 5">
+                    <img src="https://raw.githubusercontent.com/Jcanaas/JoJo-Flix/refs/heads/main/img/user_purple.png" alt="User 3">
+                    <img src="https://raw.githubusercontent.com/Jcanaas/JoJo-Flix/refs/heads/main/img/user_red.png" alt="User 3">
+                    <img src="https://raw.githubusercontent.com/Jcanaas/JoJo-Flix/refs/heads/main/img/user_white.png" alt="User 3">
+                    <img src="https://raw.githubusercontent.com/Jcanaas/JoJo-Flix/refs/heads/main/img/user_yellow.png" alt="User 3">
+                    <img src="https://raw.githubusercontent.com/Jcanaas/JoJo-Flix/refs/heads/main/img/user_beck.png" alt="User Beck">
+                    <img src="https://raw.githubusercontent.com/Jcanaas/JoJo-Flix/refs/heads/main/img/user_ellietlou.png" alt="User Ellie">
+                    <div class="url-container">
+                        <label for="customImageUrl">URL:</label>
+                        <input type="text" id="customImageUrl" placeholder="Introduce la URL de la imagen">
+                        <button id="saveCustomImage">Guardar</button>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </main>
+
+    <script>
+        function borrarLocalStorage() {
+            localStorage.clear();
+            alert("Todos los datos han sido eliminados.");
+            window.location.href = "login.html";
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const usuarioLocal = localStorage.getItem("usuario");
+            if (usuarioLocal) {
+                document.querySelector("#nombreUsuario").textContent = usuarioLocal;
+            } else {
+                window.location.href = "login.html";
+            }
+
+            const profileImage = document.getElementById("profileImage");
+            const imageSelector = document.getElementById("imageSelector");
+            const savedImage = localStorage.getItem("profileImage");
+            if (savedImage) {
+                profileImage.src = savedImage;
+            }
+
+            // Ocultar el selector de imágenes inicialmente
+            imageSelector.style.display = "none";
+
+            // Alternar la visibilidad del selector al hacer clic en la imagen de perfil
+            profileImage.addEventListener("click", function() {
+                if (imageSelector.classList.contains("show")) {
+                    imageSelector.classList.remove("show");
+                    imageSelector.classList.add("hide");
+                    setTimeout(() => {
+                        imageSelector.style.display = "none";
+                        imageSelector.classList.remove("hide");
+                    }, 300); // Duración de la animación
+                } else {
+                    imageSelector.style.display = "flex";
+                    imageSelector.classList.add("show");
+                }
+            });
+
+            // Ocultar el selector si se hace clic fuera de él
+            document.addEventListener("click", function(event) {
+                if (!profileImage.contains(event.target) && !imageSelector.contains(event.target)) {
+                    if (imageSelector.classList.contains("show")) {
+                        imageSelector.classList.remove("show");
+                        imageSelector.classList.add("hide");
+                        setTimeout(() => {
+                            imageSelector.style.display = "none";
+                            imageSelector.classList.remove("hide");
+                        }, 300); // Duración de la animación
+                    }
+                }
+            });
+
+            document.querySelectorAll(".image-selector img").forEach(img => {
+                img.addEventListener("click", function() {
+                    const newSrc = img.src;
+                    profileImage.src = newSrc;
+                    localStorage.setItem("profileImage", newSrc);
+                    imageSelector.style.display = "none";
+                });
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!profileImage.contains(event.target) && !imageSelector.contains(event.target)) {
+                    imageSelector.style.display = "none";
+                }
+            });
+
+            const customImageUrlInput = document.getElementById("customImageUrl");
+            const saveCustomImageButton = document.getElementById("saveCustomImage");
+            saveCustomImageButton.addEventListener("click", function() {
+                const customImageUrl = customImageUrlInput.value.trim();
+                if (customImageUrl) {
+                    profileImage.src = customImageUrl;
+                    localStorage.setItem("profileImage", customImageUrl);
+                    alert("Imagen personalizada guardada correctamente.");
+                    location.reload();
+                } else {
+                    alert("Por favor, introduce una URL válida.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
