@@ -45,7 +45,6 @@ MapPosition=0,13,12
 MapPosition=0,14,10
 HealingSpot=8,17,11
 [010]
-# Gimnasio Milanesa
 BattleBack=IndoorB
 MapPosition=0,13,10
 [011]
@@ -116,7 +115,7 @@ ShowArea=true
 Bicycle=true
 MapPosition=0,16,8
 [030]
-# Sala Parque Natural
+# Gimnasio
 MapPosition=0,16,8
 [031]
 # Ruta 3

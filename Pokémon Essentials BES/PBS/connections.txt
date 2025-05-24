@@ -2,14 +2,12 @@
 41,North,0,40,South,0
 # Ruta 5 (41) - Ruta 6 (45)
 41,South,6,45,North,0
-# Zona Safari (66) - Ruta 1 (5)
-66,North,18,5,South,0
 # Torremolinos (7) - Ruta 1 (5)
 7,South,0,5,North,2
 # Villa Zarzuela  (2) - Ruta 1 (5)
 2,North,0,5,South,4
-# Villa Zarzuela  (2) - Zona Safari (66)
-2,West,0,66,East,0
+# Ruta 1 (5) - Zona Safari (66)
+5,0,26,66,79,0
 # Torremolinos (7) - Socabon Soterrado (61)
 7,East,0,61,West,26
 # Ruta 2 (21) - Socabon Soterrado (61)
